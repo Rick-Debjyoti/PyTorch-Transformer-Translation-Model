@@ -158,16 +158,16 @@ def get_ds(config):  # config of the model , which we will define later
     tokenizer_src = get_or_build_tokenizer(config, ds_raw, config['lang_src'])
     tokenizer_tgt = get_or_build_tokenizer(config, ds_raw, config['lang_tgt'])
 
-    subset_ds_raw = ds_raw.select(range(1000))
-    train_ds_size = int(0.9 * len(subset_ds_raw))
-    val_ds_size = len(subset_ds_raw) - train_ds_size
-    train_ds_raw, val_ds_raw = random_split(subset_ds_raw, [train_ds_size, val_ds_size])
+    # subset_ds_raw = ds_raw.select(range(1000))
+    # train_ds_size = int(0.9 * len(subset_ds_raw))
+    # val_ds_size = len(subset_ds_raw) - train_ds_size
+    # train_ds_raw, val_ds_raw = random_split(subset_ds_raw, [train_ds_size, val_ds_size])
 
 
-    # # Keep 90% for training and 10% for validation
-    # train_ds_size = int(0.9 * len(ds_raw))
-    # val_ds_size = len(ds_raw) - train_ds_size
-    # train_ds_raw, val_ds_raw = random_split(ds_raw, [train_ds_size, val_ds_size])
+    # Keep 90% for training and 10% for validation
+    train_ds_size = int(0.9 * len(ds_raw))
+    val_ds_size = len(ds_raw) - train_ds_size
+    train_ds_raw, val_ds_raw = random_split(ds_raw, [train_ds_size, val_ds_size])
 
     train_ds = BilingualDataset(train_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
     val_ds = BilingualDataset(val_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
