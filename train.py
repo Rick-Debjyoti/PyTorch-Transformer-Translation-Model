@@ -4,22 +4,20 @@ import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader, random_split
 from dataset import BilingualDataset, causal_mask
 from model import build_transformer
-# import torchtext.datasets as datasets
-#from torch.optim.lr_scheduler import LambdaLR
 from config import get_weights_file_path, get_config, latest_weights_file_path
 import warnings
 
 from datasets import load_dataset
 from tokenizers import Tokenizer
 from tokenizers.models import WordLevel                  
-from tokenizers.trainers import WordLevelTrainer  # train on the sentences to get to the vocab size
+from tokenizers.trainers import WordLevelTrainer  
 from tokenizers.pre_tokenizers import Whitespace
 
 from torch.utils.tensorboard import SummaryWriter
 from torchmetrics.text import WordErrorRate, CharErrorRate, BLEUScore
 from tqdm import tqdm
 
-from pathlib import Path  # helps create absolute path and relative paths
+from pathlib import Path  
 # we pretend a configuration  called the tokenizer_file, which is the path to the tokenizer file and this path is formattable using the lang
 
 
@@ -235,7 +233,6 @@ def train_model(config):
         model.train()
         batch_iterator = tqdm(train_dataloader, desc=f"Processing epoch {epoch:02d}")
         for batch in batch_iterator:
-            #model.train()    ##############################
             encoder_input = batch['encoder_input'].to(device)  #  (batch, seq_len)
             decoder_input = batch['decoder_input'].to(device)  #  (batch, seq_len)
             encoder_mask = batch['encoder_mask'].to(device) # (batch, 1,1, seq_len)

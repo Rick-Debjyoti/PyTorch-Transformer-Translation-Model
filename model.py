@@ -1,23 +1,3 @@
-# language conversion
-# super().__init__() is a way to call the constructor of the parent class to ensure proper initialization of inherited attributes and methods. It's a common practice when defining subclasses in Python.
-# seq_len, is maximum length of the sentence the context window.
-# register the tensor positional encoding as buffer to make it part of the model state_dict
-# basically, when we have a tensor that we want to keep, no as a learned parameter, but want it to be saved and loaded with the model, we can register it as buffer. This way tensor will be saved along with state of the model.
-# we also tell the model the positional encoding is not a learnable parameter, but it is part of the model state.
-# eps for numerical stability and to avoid division by zero.
-# alpha and bias are single values.
-# does feed-forward layer goes for each token as each is encoded into d_model? does each token have same weights and bias ?
-# Q,K,V exactly same in encoder but not so in decoder
-# we multiply the attention step using @ and transpose but only seq-len ny d_k part because batch and h are fixed
-# we dont want some words to not watch future words or we don't want padding values to not interact with other values, because these are just filler words to reach the sequence length
-# contiguous needed for the transpose step, to transform the shape of a tensor we need the memory to be in contiguous  
-# residual connection is basically the skip connector 
-# module list is a way to organize the modules
-# bias false part, also modulelist is decoderblock residual connection
-# if we have two very different languages where sentence lenghts vary drastically, we could use different seq_len for source and target.
-# tokenizer comes before input embeddings , there are BPE tokenizer, word level, sub-word level
-# bias issue, log_softmax? in proj layer, errors in train.py, decode mask, config seq_len
-
 import torch
 import torch.nn as nn
 import math

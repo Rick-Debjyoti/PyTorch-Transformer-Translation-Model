@@ -41,7 +41,7 @@ def translate(sentence: str):
             torch.tensor(source.ids, dtype=torch.int64),
             torch.tensor([tokenizer_src.token_to_id('[EOS]')], dtype=torch.int64),
             torch.tensor([tokenizer_src.token_to_id('[PAD]')] * (seq_len - len(source.ids) - 2), dtype=torch.int64)
-        ], dim=0).to(device)
+        ], dim=0).unsqueeze(0).to(device)
         source_mask = (source != tokenizer_src.token_to_id('[PAD]')).unsqueeze(0).unsqueeze(0).int().to(device)
         encoder_output = model.encode(source, source_mask)
 

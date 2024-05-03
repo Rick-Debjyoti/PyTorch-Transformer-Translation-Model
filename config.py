@@ -5,7 +5,7 @@ def get_config():
         "batch_size": 8,
         "num_epochs": 20,
         "lr": 10**-4,
-        "seq_len": 820,
+        "seq_len": 820,  # 820 for Hind-Encorp
         "d_model": 512,
         "datasource": "hind_encorp",
         "lang_src": "en",
