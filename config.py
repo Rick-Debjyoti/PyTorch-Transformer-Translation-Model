@@ -10,10 +10,10 @@ def get_config():
         "datasource": "hind_encorp",
         "lang_src": "en",
         "lang_tgt": "hi",
-        "model_folder": "weights",
+        "model_folder": '..//drive/MyDrive/Models/PyTorch-Transformer-Translation-Model/weights',
         "model_basename": "tmodel_",
         "preload": "latest" ,   
-        "tokenizer_file": "tokenizer_{0}.json",
+        "tokenizer_file": '..//drive/MyDrive/Models/PyTorch-Transformer-Translation-Model/vocab/tokenizer_{0}.json',
         "experiment_name": "runs/tmodel"
     }
 
